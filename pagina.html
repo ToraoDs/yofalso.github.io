@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conciencia Deepfake: La Verdad Detrás de la Falsedad</title>
+    <!-- Importación de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Importación de la fuente Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Iconos de Lucide -->
+    <script src="https://unpkg.com/lucide-react@latest/dist/umd/lucide.js"></script>
+    
+    <style>
+        /* Aplicamos la fuente Inter como fuente principal */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Estilos para los tooltips interactivos */
+        .tooltip {
+            position: absolute;
+            display: none;
+            padding: 8px 12px;
+            background-color: #06b6d4; /* Color cyan-500 */
+            color: white;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            z-index: 10;
+            white-space: nowrap;
+        }
+        .hotspot {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: rgba(6, 182, 212, 0.7); /* cyan-500 con transparencia */
+            border: 2px solid white;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .hotspot:hover {
+            transform: scale(1.2);
+            background-color: rgba(6, 182, 212, 1);
+        }
+        .hotspot:hover .tooltip {
+            display: block;
+        }
+
+        /* Estilo para el progreso simulado */
+        @keyframes progress-indeterminate {
+            0% { transform: translateX(-100%) scaleX(0.5); }
+            50% { transform: translateX(0) scaleX(0.3); }
+            100% { transform: translateX(100%) scaleX(0.5); }
+        }
+        .progress-indeterminate {
+            animation: progress-indeterminate 1.5s infinite ease-out;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200 leading-relaxed">
+
+    <!-- Contenedor Principal -->
+    <div class="max-w-5xl mx-auto p-4 sm:p-8">
+
+        <!-- Encabezado -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl sm:text-5xl font-bold text-cyan-400 mb-4">El Peligro de lo Falso</h1>
+            <p class="text-xl sm:text-2xl text-gray-300">Entendiendo la amenaza de los Deepfakes</p>
+        </header>
+
+        <main>
+            <!-- Sección: ¿Qué es un Deepfake? -->
+            <section class="mb-12 bg-gray-800 p-6 sm:p-8 rounded-lg shadow-xl">
+                <h2 class="text-3xl font-semibold text-cyan-300 mb-4">¿Qué es un Deepfake?</h2>
+                <p class="text-lg mb-4">
+                    Un "deepfake" es un video, audio o imagen manipulada digitalmente que parece ser auténtica. Utilizando inteligencia artificial (IA) avanzada, específicamente redes generativas antagónicas (GANs), los creadores pueden superponer el rostro de una persona en el cuerpo de otra, o incluso sintetizar su voz, haciendo que digan o hagan cosas que nunca ocurrieron.
+                </p>
+                <p class="text-lg">
+                    El término proviene de la combinación de "deep learning" (aprendizaje profundo) y "fake" (falso). Lo que antes requería un estudio de efectos visuales de Hollywood, ahora es accesible para más personas, aumentando su potencial de uso malicioso.
+                </p>
+            </section>
+
+            <!-- 
+                SECCIÓN DE VIDEO
+            -->
+            <section class="mb-12">
+                <h2 class="text-3xl font-semibold text-cyan-300 mb-6 text-center">No todo lo que ves (o escuchas) es real</h2>
+                <div class="bg-gray-800 p-4 rounded-lg shadow-xl max-w-3xl mx-auto">
+                    <!-- El elemento <video> usa el nombre del archivo que subiste -->
+                    <video class="w-full rounded-lg" controls autoplay loop muted>
+                        <source src="Creación_de_Video_Sobre_DeepFakes.mp4" type="video/mp4">
+                        Tu navegador no soporta el elemento de video. Por favor, actualízalo.
+                    </video>
+                    <p class="text-center text-gray-400 mt-4 text-sm">
+                        Video de ejemplo que muestra el peligro de los deepfakes.
+                    </p>
+                </div>
+            </section>
+
+
+            <!-- Sección: Los Peligros -->
+            <section class="mb-12">
+                <h2 class="text-3xl font-semibold text-cyan-300 mb-6 text-center">Los Peligros Reales</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Tarjeta de Peligro 1 -->
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg transition-transform hover:scale-105">
+                        <h3 class="text-xl font-bold text-red-400 mb-2">Desinformación y Noticias Falsas</h3>
+                        <p>Videos falsos de líderes mundiales diciendo cosas incendiarias pueden desestabilizar gobiernos o mercados financieros. La confianza en los medios se erosiona cuando "ver para creer" ya no es fiable.</p>
+                    </div>
+                    <!-- Tarjeta de Peligro 2 -->
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg transition-transform hover:scale-105">
+                        <h3 class="text-xl font-bold text-red-400 mb-2">Fraude y Suplantación</h3>
+                        <p>Los estafadores pueden usar deepfakes de audio para imitar la voz de un ser querido pidiendo dinero en una emergencia, o de un CEO autorizando una transferencia bancaria fraudulenta.</p>
+                    </div>
+                    <!-- Tarjeta de Peligro 3 -->
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg transition-transform hover:scale-105">
+                        <h3 class="text-xl font-bold text-red-400 mb-2">Daño a la Reputación y Acoso</h3>
+                        <p>Se pueden crear videos comprometedores falsos de cualquier persona, usándolos para extorsión, acoso o para destruir la reputación personal y profesional de alguien. Es una forma devastadora de abuso.</p>
+                    </div>
+                    <!-- Tarjeta de Peligro 4 -->
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg transition-transform hover:scale-105">
+                        <h3 class="text-xl font-bold text-red-400 mb-2">Manipulación Política</h3>
+                        <p>Durante una elección, un video deepfake de un candidato en un escándalo o diciendo algo inapropiado puede influir decisivamente en la opinión pública antes de que pueda ser desmentido.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección: ¿Cómo Detectarlos? (Interactiva) -->
+            <section class="mb-12">
+                <h2 class="text-3xl font-semibold text-cyan-300 mb-6 text-center">¿Cómo Detectar un Deepfake?</h2>
+                <p class="text-lg text-center mb-8">Aunque la tecnología mejora, muchos deepfakes aún tienen fallas. Pasa el ratón (o pulsa) sobre los puntos en la imagen "falsa" para ver las señales de alerta comunes.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <!-- Imagen Real (Placeholder) -->
+                    <div class="text-center">
+                        <h4 class="text-2xl font-semibold text-green-400 mb-4">Video Real</h4>
+                        <img src="https://placehold.co/600x400/374151/FFF?text=Video+Real" alt="Video Real" class="rounded-lg shadow-lg w-full">
+                        <p class="mt-4 text-gray-400">Iluminación consistente, parpadeo natural, movimientos fluidos.</p>
+                    </div>
+
+                    <!-- Imagen Falsa (Interactiva) -->
+                    <div class="text-center">
+                        <h4 class="text-2xl font-semibold text-red-400 mb-4">Video Falso (Deepfake)</h4>
+                        <div class="relative w-full">
+                            <img src="https://placehold.co/600x400/374151/FFF?text=Video+Falso" alt="Video Falso" class="rounded-lg shadow-lg w-full">
+                            
+                            <!-- Hotspot 1: Ojos -->
+                            <div class="hotspot" style="top: 30%; left: 35%;">
+                                <div class="tooltip" style="top: -40px; left: -50px;">Parpadeo extraño</div>
+                            </div>
+                            <div class="hotspot" style="top: 30%; left: 55%;">
+                                <div class="tooltip" style="top: -40px; left: -50px;">Parpadeo extraño</div>
+                            </div>
+
+                            <!-- Hotspot 2: Bordes del rostro -->
+                            <div class="hotspot" style="top: 50%; left: 20%;">
+                                <div class="tooltip" style="top: -20px; left: -120px;">Bordes borrosos</div>
+                            </div>
+
+                            <!-- Hotspot 3: Boca -->
+                            <div class="hotspot" style="top: 65%; left: 45%;">
+                                <div class="tooltip" style="top: 30px; left: -60px;">Sincronización labial</div>
+                            </div>
+
+                            <!-- Hotspot 4: Iluminación -->
+                            <div class="hotspot" style="top: 20%; left: 70%;">
+                                <div class="tooltip" style="top: -40px; left: -60px;">Luz inconsistente</div>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-gray-400">Busca estas señales de alerta.</p>
+                    </div>
+                </div>
+
+                <!-- Lista de Señales -->
+                <div class="mt-10 bg-gray-800 p-6 rounded-lg shadow-xl">
+                    <h3 class="text-xl font-semibold text-cyan-300 mb-4">Otras señales a buscar:</h3>
+                    <ul class="list-disc list-inside space-y-2 text-lg">
+                        <li><strong>Parpadeo inusual:</strong> La IA a veces "olvida" hacer que la persona parpadee, o lo hace de forma extraña.</li>
+                        <li><strong>Piel demasiado lisa o arrugas extrañas:</strong> La piel puede parecer artificial, como de cera.</li>
+                        <li><strong>Inconsistencias en iluminación y sombras:</strong> Las sombras en el rostro falso pueden no coincidir con la iluminación del resto del video.</li>
+                        <li><strong>Voz robótica o sin emoción:</strong> Los deepfakes de audio a menudo carecen de la entonación y las pausas naturales del habla humana.</li>
+                        <li><strong>Artefactos digitales:</strong> Busca "glitches", bordes borrosos o distorsión donde la cara se une al cuello o cabello.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 
+                *** NUEVA SECCIÓN: DETECTOR DE IA SIMULADO ***
+            -->
+            <section id="detector" class="mb-12">
+                <h2 class="text-3xl font-semibold text-cyan-300 mb-6 text-center">Prueba Nuestro Detector de IA Simulado</h2>
+                <p class="text-lg text-center mb-8">Sube un archivo (video o imagen) para ver cómo una herramienta de IA analizaría el contenido en busca de anomalías. <br><strong class="text-cyan-400">(Esto es una simulación con fines educativos, no se sube ningún archivo).</strong></p>
+
+                <div class="max-w-3xl mx-auto">
+                    <!-- Zona de Carga -->
+                    <div class="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-xl mb-6">
+                        <h3 class="text-2xl font-semibold text-white mb-4">Cargar Archivo para Análisis</h3>
+                        
+                        <!-- Input de archivo personalizado -->
+                        <div class="border-2 border-dashed border-gray-600 rounded-lg p-8 text-center hover:border-cyan-400 transition-colors">
+                            <input type="file" id="file-upload" class="hidden" accept="video/*,image/*">
+                            <label for="file-upload" id="file-label" class="cursor-pointer">
+                                <i data-lucide="upload" class="mx-auto mb-4 h-12 w-12 text-gray-400"></i>
+                                <p class="text-sm font-medium mb-1" id="file-name">Haz clic para seleccionar un archivo</p>
+                                <p class="text-xs text-gray-500">MP4, MOV, JPG, PNG (Simulado)</p>
+                            </label>
+                        </div>
+
+                        <button id="analyze-btn" disabled class="mt-6 w-full bg-cyan-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-cyan-500 transition-all disabled:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                            <i data-lucide="activity" class="h-5 w-5"></i>
+                            <span id="analyze-btn-text">Analizar Archivo</span>
+                        </button>
+                    </div>
+
+                    <!-- Progreso del Análisis (Oculto por defecto) -->
+                    <div id="analysis-progress" class="hidden mb-6 bg-gray-800 p-6 rounded-lg shadow-xl">
+                        <p class="text-center text-lg font-medium mb-4">Analizando...</p>
+                        <div class="w-full bg-gray-700 rounded-full h-2.5 overflow-hidden">
+                            <div class="bg-cyan-400 h-2.5 rounded-full progress-indeterminate" style="width: 100%;"></div>
+                        </div>
+                        <p class="text-center text-sm text-gray-400 mt-4">Examinando patrones de voz, faciales y de entorno...</p>
+                    </div>
+
+                    <!-- Contenedor de Resultados (Oculto por defecto) -->
+                    <div id="results-container" class="hidden space-y-6">
+                        <!-- Puntuación General -->
+                        <div class="bg-gray-800 p-6 rounded-lg shadow-xl border-2" id="overall-score-card">
+                            <h3 class="text-sm font-medium text-gray-400 mb-2 text-center">Probabilidad de Contenido Generado por IA</h3>
+                            <div class="flex flex-col items-center justify-center gap-4">
+                                <span class="text-6xl font-bold" id="overall-score">82%</span>
+                                <span class="text-lg font-medium px-4 py-1.5 rounded-full" id="overall-badge">
+                                    <i class="inline-block h-4 w-4" data-lucide="alert-triangle"></i>
+                                    Alto Riesgo
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Resultados Detallados -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="detailed-results">
+                            <!-- Los resultados detallados se insertarán aquí -->
+                        </div>
+
+                        <!-- Línea de Tiempo -->
+                        <div class="bg-gray-800 p-6 rounded-lg shadow-xl">
+                            <h3 class="text-xl font-semibold text-white mb-6">Línea de Tiempo de Anomalías</h3>
+                            <div class="relative space-y-6 border-l-2 border-gray-700 ml-4" id="timeline-results">
+                                <!-- Las anomalías de la línea de tiempo se insertarán aquí -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <!-- *** FIN DE LA NUEVA SECCIÓN *** -->
+
+
+            <!-- Sección: Protégete -->
+            <section class="mb-12 text-center">
+                <h2 class="text-3xl font-semibold text-cyan-300 mb-6">¿Qué puedes hacer? Sé Escéptico.</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold text-cyan-400 mb-2">1. Verifica la Fuente</h3>
+                        <p>¿Quién comparte el video? ¿Es una fuente de noticias fiable? Busca la historia en otros medios de comunicación reputados.</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold text-cyan-400 mb-2">2. Piensa Antes de Compartir</h3>
+                        <p>La desinformación se propaga porque reaccionamos emocionalmente. Tómate un segundo. Si algo parece demasiado impactante o perfecto, podría ser falso.</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold text-cyan-400 mb-2">3. Fomenta el Pensamiento Crítico</h3>
+                        <p>Educa a tus amigos y familiares sobre los deepfakes. Cuanta más gente conozca esta tecnología, más difícil será que nos engañen como sociedad.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Pie de Página -->
+        <footer class="text-center border-t border-gray-700 pt-8 mt-12">
+            <p class="text-gray-500">Esta página es un proyecto de concientización sobre los peligros de la manipulación digital.</p>
+            <p class="text-gray-500">Mantente alerta. Cuestiona lo que ves.</p>
+        </footer>
+
+    </div>
+
+    <!-- Script para iconos y funcionalidad del detector -->
+    <script>
+        // Cargar iconos de Lucide
+        lucide.createIcons();
+
+        // Lógica del detector simulado
+        document.addEventListener('DOMContentLoaded', () => {
+            const fileUpload = document.getElementById('file-upload');
+            const fileNameDisplay = document.getElementById('file-name');
+            const analyzeBtn = document.getElementById('analyze-btn');
+            const analyzeBtnText = document.getElementById('analyze-btn-text');
+            const analysisProgress = document.getElementById('analysis-progress');
+            const resultsContainer = document.getElementById('results-container');
+            const overallScore = document.getElementById('overall-score');
+            const overallBadge = document.getElementById('overall-badge');
+            const overallScoreCard = document.getElementById('overall-score-card');
+            const detailedResults = document.getElementById('detailed-results');
+            const timelineResults = document.getElementById('timeline-results');
+
+            let selectedFile = null;
+
+            if (fileUpload) {
+                fileUpload.addEventListener('change', (e) => {
+                    if (e.target.files.length > 0) {
+                        selectedFile = e.target.files[0];
+                        fileNameDisplay.textContent = selectedFile.name;
+                        if (analyzeBtn) analyzeBtn.disabled = false;
+                        
+                        // Ocultar resultados anteriores si se selecciona un nuevo archivo
+                        if (resultsContainer) resultsContainer.classList.add('hidden');
+                    }
+                });
+            }
+
+            if (analyzeBtn) {
+                analyzeBtn.addEventListener('click', () => {
+                    if (!selectedFile) return;
+
+                    // 1. Mostrar progreso y deshabilitar botón
+                    if (analysisProgress) analysisProgress.classList.remove('hidden');
+                    if (resultsContainer) resultsContainer.classList.add('hidden');
+                    analyzeBtn.disabled = true;
+                    if (analyzeBtnText) analyzeBtnText.textContent = 'Analizando...';
+                    
+                    // 2. Simular análisis
+                    setTimeout(() => {
+                        // 3. Ocultar progreso
+                        if (analysisProgress) analysisProgress.classList.add('hidden');
+                        
+                        // 4. Generar resultados simulados
+                        const mockResults = generateMockResults();
+
+                        // 5. Mostrar resultados
+                        if (overallScore) overallScore.textContent = `${mockResults.overallProbability}%`;
+                        
+                        // Actualizar insignia de puntuación
+                        if (overallBadge && overallScoreCard) {
+                            if (mockResults.overallProbability > 70) {
+                                overallBadge.innerHTML = `<i data-lucide="alert-triangle" class="inline-block h-4 w-4 mr-1"></i> Alto Riesgo`;
+                                overallBadge.className = 'text-lg font-medium px-4 py-1.5 rounded-full bg-red-600 text-white';
+                                overallScoreCard.className = 'bg-gray-800 p-6 rounded-lg shadow-xl border-2 border-red-500';
+                            } else if (mockResults.overallProbability > 40) {
+                                overallBadge.innerHTML = `<i data-lucide="alert-circle" class="inline-block h-4 w-4 mr-1"></i> Riesgo Moderado`;
+                                overallBadge.className = 'text-lg font-medium px-4 py-1.5 rounded-full bg-yellow-500 text-gray-900';
+                                overallScoreCard.className = 'bg-gray-800 p-6 rounded-lg shadow-xl border-2 border-yellow-500';
+                            } else {
+                                overallBadge.innerHTML = `<i data-lucide="check-circle" class="inline-block h-4 w-4 mr-1"></i> Probablemente Genuino`;
+                                overallBadge.className = 'text-lg font-medium px-4 py-1.5 rounded-full bg-green-600 text-white';
+                                overallScoreCard.className = 'bg-gray-800 p-6 rounded-lg shadow-xl border-2 border-green-500';
+                            }
+                        }
+
+                        // Poblar resultados detallados
+                        if (detailedResults) {
+                            detailedResults.innerHTML = mockResults.categories.map(cat => createCategoryCard(cat)).join('');
+                        }
+
+                        // Poblar línea de tiempo
+                        if (timelineResults) {
+                            timelineResults.innerHTML = mockResults.timeline.map(item => createTimelineItem(item)).join('');
+                        }
+
+                        if (resultsContainer) resultsContainer.classList.remove('hidden');
+                        
+                        // 6. Reactivar botón para nuevo análisis
+                        analyzeBtn.disabled = false;
+                        if (analyzeBtnText) analyzeBtnText.textContent = 'Analizar Otro Archivo';
+
+                        // Recargar iconos
+                        lucide.createIcons();
+
+                    }, 3000); // Simular 3 segundos de análisis
+                });
+            }
+        });
+
+        function generateMockResults() {
+            const prob = Math.floor(Math.random() * 60) + 40; // 40-100%
+            return {
+                overallProbability: prob,
+                categories: [
+                    {
+                        title: "Análisis de Voz",
+                        icon: "mic",
+                        score: Math.floor(Math.random() * 40) + 60,
+                        description: "Artefactos de síntesis y tonalidad no natural."
+                    },
+                    {
+                        title: "Rasgos Faciales",
+                        icon: "user",
+                        score: Math.floor(Math.random() * 40) + 50,
+                        description: "Parpadeo irregular y desincronización labial."
+                    },
+                ],
+                timeline: [
+                    { time: "0:02.1s", severity: "high", description: "Cambio abrupto de tono de voz detectado." },
+                    { time: "0:04.5s", severity: "medium", description: "Parpadeo inconsistente y movimiento de ojos." },
+                    { time: "0:07.8s", severity: "low", description: "Ligero desenfoque en el borde del rostro." },
+                ]
+            };
+        }
+
+        function createCategoryCard(category) {
+            return `
+                <div class="bg-gray-800 p-5 rounded-lg shadow-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="p-2 rounded-lg bg-cyan-500/20">
+                            <i data-lucide="${category.icon}" class="h-5 w-5 text-cyan-400"></i>
+                        </div>
+                        <h4 class="text-lg font-semibold text-white">${category.title}</h4>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-2">${category.description}</p>
+                    <div class="w-full bg-gray-700 rounded-full h-2.5">
+                        <div class="bg-red-500 h-2.5 rounded-full" style="width: ${category.score}%"></div>
+                    </div>
+                    <p class="text-right text-sm font-bold text-red-400 mt-1">${category.score}%</p>
+                </div>
+            `;
+        }
+        
+        function createTimelineItem(item) {
+            let colorClass = "text-yellow-400 border-yellow-400";
+            if (item.severity === 'high') colorClass = "text-red-400 border-red-400";
+            if (item.severity === 'low') colorClass = "text-blue-400 border-blue-400";
+
+            let icon = "alert-circle";
+            if (item.severity === 'high') icon = "alert-triangle";
+            if (item.severity === 'low') icon = "info";
+
+            return `
+                <div class="relative flex gap-4 pb-6">
+                    <!-- Icono y línea -->
+                    <div class="absolute left-[-25px] top-1.5 flex flex-col items-center">
+                        <div class="z-10 flex h-8 w-8 items-center justify-center rounded-full bg-gray-900 border-2 ${colorClass}">
+                            <i data-lucide="${icon}" class="h-4 w-4"></i>
+                        </div>
+                    </div>
+                    <!-- Contenido -->
+                    <div class="flex-1">
+                        <span class="font-mono text-sm px-2 py-0.5 bg-gray-700 rounded text-cyan-300">${item.time}</span>
+                        <p class="mt-2 text-sm text-gray-300">${item.description}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+    </script>
+</body>
+</html>
+
