@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conciencia Deepfake: La Verdad Detrás de la Falsedad</title>
+    <title>Yo Falso</title>
     <!-- Importación de Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Importación de la fuente Inter -->
@@ -11,43 +11,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- Iconos de Lucide -->
-    <script src="https://unpkg.com/lucide-react@latest/dist/umd/lucide.js"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     
     <style>
         /* Aplicamos la fuente Inter como fuente principal */
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* bg-slate-50 */
         }
-        /* Estilos para los tooltips interactivos */
-        .tooltip {
-            position: absolute;
-            display: none;
-            padding: 8px 12px;
-            background-color: #06b6d4; /* Color cyan-500 */
-            color: white;
-            border-radius: 6px;
-            font-size: 0.875rem;
-            z-index: 10;
-            white-space: nowrap;
-        }
-        .hotspot {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background-color: rgba(6, 182, 212, 0.7); /* cyan-500 con transparencia */
-            border: 2px solid white;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .hotspot:hover {
-            transform: scale(1.2);
-            background-color: rgba(6, 182, 212, 1);
-        }
-        .hotspot:hover .tooltip {
-            display: block;
-        }
-
+        
         /* Estilo para el progreso simulado */
         @keyframes progress-indeterminate {
             0% { transform: translateX(-100%) scaleX(0.5); }
@@ -58,400 +30,358 @@
             animation: progress-indeterminate 1.5s infinite ease-out;
         }
 
+        /* Estilos para pestañas activas e inactivas */
+        .tab-btn {
+            transition: all 0.2s ease-in-out;
+        }
+        .tab-btn.active {
+            background-color: #2563eb; /* bg-blue-600 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .tab-btn.inactive {
+            background-color: #e2e8f0; /* bg-slate-200 */
+            color: #334155; /* text-slate-700 */
+        }
+        .tab-btn.inactive:hover {
+            background-color: #cbd5e1; /* bg-slate-300 */
+        }
+
     </style>
 </head>
-<body class="bg-gray-900 text-gray-200 leading-relaxed">
+<body class="bg-slate-50 text-slate-900 leading-relaxed">
 
     <!-- Contenedor Principal -->
-    <div class="max-w-5xl mx-auto p-4 sm:p-8">
+    <div class="max-w-6xl mx-auto p-4 sm:p-8">
 
         <!-- Encabezado -->
-        <header class="text-center mb-12">
-            <h1 class="text-4xl sm:text-5xl font-bold text-cyan-400 mb-4">El Peligro de lo Falso</h1>
-            <p class="text-xl sm:text-2xl text-gray-300">Entendiendo la amenaza de los Deepfakes</p>
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-bold text-blue-600 mb-4">Yo Falso</h1>
+            <p class="text-xl sm:text-2xl text-slate-600">Tu escudo contra el fraude y la desinformación.</p>
         </header>
 
-        <main>
-            <!-- Sección: ¿Qué es un Deepfake? -->
-            <section class="mb-12 bg-gray-800 p-6 sm:p-8 rounded-lg shadow-xl">
-                <h2 class="text-3xl font-semibold text-cyan-300 mb-4">¿Qué es un Deepfake?</h2>
-                <p class="text-lg mb-4">
-                    Un "deepfake" es un video, audio o imagen manipulada digitalmente que parece ser auténtica. Utilizando inteligencia artificial (IA) avanzada, específicamente redes generativas antagónicas (GANs), los creadores pueden superponer el rostro de una persona en el cuerpo de otra, o incluso sintetizar su voz, haciendo que digan o hagan cosas que nunca ocurrieron.
-                </p>
-                <p class="text-lg">
-                    El término proviene de la combinación de "deep learning" (aprendizaje profundo) y "fake" (falso). Lo que antes requería un estudio de efectos visuales de Hollywood, ahora es accesible para más personas, aumentando su potencial de uso malicioso.
-                </p>
-            </section>
+        <!-- Navegación de Pestañas -->
+        <nav class="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mb-8">
+            <button class="tab-btn active text-sm sm:text-base font-medium py-3 px-4 sm:px-6 rounded-lg" data-tab="entender">
+                <i data-lucide="book-open" class="inline-block h-4 w-4 mr-1.5"></i> Entendiendo el Deepfake
+            </button>
+            <button class="tab-btn inactive text-sm sm:text-base font-medium py-3 px-4 sm:px-6 rounded-lg" data-tab="tips">
+                <i data-lucide="search" class="inline-block h-4 w-4 mr-1.5"></i> Kit de Detección
+            </button>
+            <button class="tab-btn inactive text-sm sm:text-base font-medium py-3 px-4 sm:px-6 rounded-lg" data-tab="asistencia">
+                <i data-lucide="life-buoy" class="inline-block h-4 w-4 mr-1.5"></i> Asistencia a Víctimas
+            </button>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="tab-btn inactive text-sm sm:text-base font-medium py-3 px-4 sm:px-6 rounded-lg">
+                <i data-lucide="shield-check" class="inline-block h-4 w-4 mr-1.5"></i> Detector de IA
+            </a>
+        </nav>
 
-            <!-- 
-                SECCIÓN DE VIDEO
-            -->
-            <section class="mb-12">
-                <h2 class="text-3xl font-semibold text-cyan-300 mb-6 text-center">No todo lo que ves (o escuchas) es real</h2>
-                <div class="bg-gray-800 p-4 rounded-lg shadow-xl max-w-3xl mx-auto">
-                    <!-- El elemento <video> usa el nombre del archivo que subiste -->
-                    <video class="w-full rounded-lg" controls autoplay loop muted>
-                        <source src="Creación_de_Video_Sobre_DeepFakes.mp4" type="video/mp4">
-                        Tu navegador no soporta el elemento de video. Por favor, actualízalo.
-                    </video>
-                    <p class="text-center text-gray-400 mt-4 text-sm">
-                        Video de ejemplo que muestra el peligro de los deepfakes.
+        <!-- Contenido de Pestañas -->
+        <main class="bg-white p-6 sm:p-10 rounded-lg shadow-xl">
+
+            <!-- Módulo 1: Entendiendo el Deepfake -->
+            <div id="entender" class="tab-content space-y-8">
+                <h2 class="text-3xl font-semibold text-blue-600 mb-4">Información Esencial sobre Deepfakes</h2>
+                <p class="text-lg text-slate-700">
+                    Un "deepfake" es un video, audio o imagen manipulada digitalmente que parece ser auténtica. Utilizando inteligencia artificial (IA) avanzada, los creadores pueden superponer el rostro de una persona en el cuerpo de otra, o incluso sintetizar su voz, haciendo que digan o hagan cosas que nunca ocurrieron.
+                </p>
+
+                <!-- Video de Ejemplo -->
+                <div class="my-8">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-4">Caso de Estudio: La Estafa de la Videollamada</h3>
+                    <div class="bg-slate-800 p-4 rounded-lg shadow-lg max-w-3xl mx-auto">
+                        <video class="w-full rounded-lg" controls loop muted>
+                            <source src="Creación_de_Video_Sobre_DeepFakes.mp4" type="video/mp4">
+                            Tu navegador no soporta el elemento de video.
+                        </video>
+                        <p class="text-center text-slate-400 mt-4 text-sm">
+                            Este video (real) muestra una simulación de cómo un deepfake (falso) puede ser usado en una estafa.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Historia y Clasificación -->
+                    <div class="bg-slate-100 p-6 rounded-lg">
+                        <h3 class="text-2xl font-semibold text-slate-800 mb-4">Historia y Clasificación</h3>
+                        <p class="mb-4">Originados en foros de internet alrededor de 2017, los deepfakes han evolucionado rápidamente de simples intercambios de rostros a complejas simulaciones en tiempo real.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="video" class="h-5 w-5 text-blue-500 flex-shrink-0 mt-1"></i>
+                                <div>
+                                    <strong class="font-semibold">Visuales:</strong> El tipo más común. Incluye el intercambio de rostros (face-swapping) o la manipulación de expresiones faciales (lip-sync).
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="mic" class="h-5 w-5 text-blue-500 flex-shrink-0 mt-1"></i>
+                                <div>
+                                    <strong class="font-semibold">Auditivos (Clonación de Voz):</strong> La IA aprende el patrón de voz de una persona para generar un audio nuevo diciendo cualquier cosa.
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="file-text" class="h-5 w-5 text-blue-500 flex-shrink-0 mt-1"></i>
+                                <div>
+                                    <strong class="font-semibold">Texto Sintético:</strong> Modelos como GPT-4 pueden generar texto indistinguible del escrito por humanos, usado para desinformación o suplantación en correos.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Riesgos Actuales -->
+                    <div class="bg-red-100 border border-red-200 p-6 rounded-lg">
+                        <h3 class="text-2xl font-semibold text-red-700 mb-4">Riesgos Actuales</h3>
+                        <p class="mb-4">El impacto de los deepfakes es inmediato y severo, erosionando la confianza y causando pérdidas financieras.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="dollar-sign" class="h-5 w-5 text-red-600 flex-shrink-0 mt-1"></i>
+                                <div>
+                                    <strong class="font-semibold">Estafas y Extorsión:</strong> Falsas videollamadas de seres queridos pidiendo dinero, o de un CEO autorizando transferencias bancarias fraudulentas.
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="megaphone" class="h-5 w-5 text-red-600 flex-shrink-0 mt-1"></i>
+                                <div>
+                                    <strong class="font-semibold">Desinformación Política:</strong> Videos falsos de líderes mundiales declarando una guerra o admitiendo un crimen, diseñados para desestabilizar.
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="user-x" class="h-5 w-5 text-red-600 flex-shrink-0 mt-1"></i>
+                                <div>
+                                    <strong class="font-semibold">Acoso y Daño Reputacional:</strong> Creación de material comprometedor falso para destruir la reputación de una persona.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Módulo 2: Tips de Identificación -->
+            <div id="tips" class="tab-content hidden space-y-8">
+                <h2 class="text-3xl font-semibold text-blue-600 mb-4">El Kit de Detección Rápida</h2>
+                <p class="text-lg text-slate-700 mb-6">La IA es avanzada, pero no es perfecta. Aprende a identificar las "costuras" digitales. Busca siempre inconsistencias.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Checklist Visual -->
+                    <div class="bg-blue-50 border border-blue-200 p-6 rounded-lg">
+                        <h3 class="text-2xl font-semibold text-blue-800 mb-4 flex items-center gap-2">
+                            <i data-lucide="eye" class="h-6 w-6"></i>
+                            Checklist de Detección Visual
+                        </h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="eye-off" class="h-5 w-5 text-blue-600 flex-shrink-0 mt-1"></i>
+                                <div>
+                                    <strong class="font-semibold">Parpadeo y Mirada:</strong> La IA a menudo "olvida" hacer que la persona parpadee de forma natural. Busca un parpadeo nulo, excesivo o mecánicamente regular. La mirada puede parecer fija o desenfocada.
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="sun-moon" class="h-5 w-5 text-blue-600 flex-shrink-0 mt-1"></i>
+                                <div>
+                                    <strong class="font-semibold">Iluminación y Sombras:</strong> Las sombras en el rostro falso (especialmente bajo la nariz y barbilla) pueden no coincidir con la iluminación del entorno.
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="git-commit" class="h-5 w-5 text-blue-600 flex-shrink-0 mt-1"></i>
+                                <div>
+                                    <strong class="font-semibold">Contornos del Rostro:</strong> Busca bordes borrosos, pixelados o con "glitches" donde la cara se une con el cabello, el cuello o el fondo.
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="smile" class="h-5 w-5 text-blue-600 flex-shrink-0 mt-1"></i>
+                                <div>
+                                    <strong class="font-semibold">Sincronización Labial:</strong> La boca puede moverse de forma ligeramente desincronizada con el audio, o los movimientos pueden parecer poco naturales.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Checklist Auditivo -->
+                    <div class="bg-blue-50 border border-blue-200 p-6 rounded-lg">
+                        <h3 class="text-2xl font-semibold text-blue-800 mb-4 flex items-center gap-2">
+                            <i data-lucide="volume-2" class="h-6 w-6"></i>
+                            Checklist de Detección Auditiva
+                        </h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="bot" class="h-5 w-5 text-blue-600 flex-shrink-0 mt-1"></i>
+                                <div>
+                                    <strong class="font-semibold">Entonación Robótica (Monotonía):</strong> La voz puede carecer de emoción, sonar plana, o tener un ritmo y cadencia extrañamente perfectos, sin las pausas naturales del habla.
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="wind" class="h-5 w-5 text-blue-600 flex-shrink-0 mt-1"></i>
+                                <div>
+                                    <strong class="font-semibold">Fallas en la Respiración:</strong> La IA puede no simular correctamente los sonidos de respiración entre frases, o pueden sonar como un ruido añadido.
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="volume-x" class="h-5 w-5 text-blue-600 flex-shrink-0 mt-1"></i>
+                                <div>
+                                    <strong class="font-semibold">Glitches y Ruido Metálico:</strong> Presta atención a pequeños ruidos metálicos, chasquidos o una calidad de audio extrañamente "vacía", como si estuviera grabada en un estudio sin eco.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+                <!-- Módulo 3: Respuesta y Asistencia -->
+            <div id="asistencia" class="tab-content hidden space-y-8">
+                <h2 class="text-3xl font-semibold text-blue-600 mb-4">Protocolo de Acción: ¿Qué hacer si eres víctima?</h2>
+                <p class="text-lg text-slate-700 mb-6">Actuar con rapidez es fundamental para mitigar el daño. Sigue este protocolo de respuesta inmediata si sospechas que has sido víctima de una estafa por deepfake.</p>
+                <ol class="space-y-6">
+                    <!-- Paso 1 -->
+                    <li class="flex items-start gap-4">
+                        <div class="flex-shrink-0 h-12 w-12 flex items-center justify-center bg-blue-600 text-white text-xl font-bold rounded-full">1</div>
+                        <div class="pt-2">
+                            <h3 class="text-xl font-semibold text-slate-800">Acciones Inmediatas</h3>
+                            <p class="text-slate-600">No envíes más dinero. Corta toda comunicación con el presunto estafador. Bloquea números de teléfono, correos electrónicos y perfiles de redes sociales.</p>
+                        </div>
+                    </li>
+                    <!-- Paso 2 -->
+                    <li class="flex items-start gap-4">
+                        <div class="flex-shrink-0 h-12 w-12 flex items-center justify-center bg-blue-600 text-white text-xl font-bold rounded-full">2</div>
+                        <div class="pt-2">
+                            <h3 class="text-xl font-semibold text-slate-800">Documentar la Evidencia</h3>
+                            <p class="text-slate-600">No borres nada. Toma capturas de pantalla de las conversaciones, guarda los archivos de video o audio, y registra los números de teléfono, perfiles o datos bancarios proporcionados por el estafador.</p>
+                        </div>
+                    </li>
+                    <!-- Paso 3 -->
+                    <li class="flex items-start gap-4">
+                        <div class="flex-shrink-0 h-12 w-12 flex items-center justify-center bg-blue-600 text-white text-xl font-bold rounded-full">3</div>
+                        <div class="pt-2">
+                            <h3 class="text-xl font-semibold text-slate-800">Reportar a las Autoridades</h3>
+                            <p class="text-slate-600">Presenta una denuncia formal. En Colombia, puedes acudir al CAI Virtual de la Policía Nacional o a la Fiscalía General de la Nación (Sección de Delitos Informáticos). Aporta toda la evidencia recopilada.</p>
+                        </div>
+                    </li>
+                    <!-- Paso 4 -->
+                    <li class="flex items-start gap-4">
+                        <div class="flex-shrink-0 h-12 w-12 flex items-center justify-center bg-blue-600 text-white text-xl font-bold rounded-full">4</div>
+                        <div class="pt-2">
+                            <h3 class="text-xl font-semibold text-slate-800">Contactar Entidades Financieras</h3>
+                            <p class="text-slate-600">Si realizaste una transferencia, contacta a tu banco inmediatamente. Informa del fraude y solicita el bloqueo de la transacción o de las cuentas involucradas.
+                            </p>
+                        </div>
+                    </li>
+                     <!-- Paso 5 -->
+                    <li class="flex items-start gap-4">
+                        <div class="flex-shrink-0 h-12 w-12 flex items-center justify-center bg-blue-600 text-white text-xl font-bold rounded-full">5</div>
+                        <div class="pt-2">
+                            <h3 class="text-xl font-semibold text-slate-800">Apoyo Emocional</h3>
+                            <p class="text-slate-600">Ser víctima de una estafa, especialmente una que usa la imagen o voz de un ser querido, es emocionalmente devastador. Considera buscar apoyo psicológico para procesar la experiencia.</p>
+                        </div>
+                    </li>
+                </ol>
+
+                <!-- Nueva Sección: Asistencia Global y Regional -->
+                <div class="mt-12 pt-8 border-t border-slate-300">
+                    <h3 class="text-2xl font-semibold text-blue-800 mb-4 flex items-center gap-2">
+                        <i data-lucide="globe" class="h-6 w-6"></i>
+                        Asistencia Global y Regional
+                    </h3>
+                    <p class="text-slate-600 mb-6">
+                        El ciberdelito no tiene fronteras. Aquí hay recursos internacionales y ejemplos regionales donde puedes reportar este tipo de fraude.
                     </p>
-                </div>
-            </section>
-
-
-            <!-- Sección: Los Peligros -->
-            <section class="mb-12">
-                <h2 class="text-3xl font-semibold text-cyan-300 mb-6 text-center">Los Peligros Reales</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Tarjeta de Peligro 1 -->
-                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg transition-transform hover:scale-105">
-                        <h3 class="text-xl font-bold text-red-400 mb-2">Desinformación y Noticias Falsas</h3>
-                        <p>Videos falsos de líderes mundiales diciendo cosas incendiarias pueden desestabilizar gobiernos o mercados financieros. La confianza en los medios se erosiona cuando "ver para creer" ya no es fiable.</p>
-                    </div>
-                    <!-- Tarjeta de Peligro 2 -->
-                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg transition-transform hover:scale-105">
-                        <h3 class="text-xl font-bold text-red-400 mb-2">Fraude y Suplantación</h3>
-                        <p>Los estafadores pueden usar deepfakes de audio para imitar la voz de un ser querido pidiendo dinero en una emergencia, o de un CEO autorizando una transferencia bancaria fraudulenta.</p>
-                    </div>
-                    <!-- Tarjeta de Peligro 3 -->
-                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg transition-transform hover:scale-105">
-                        <h3 class="text-xl font-bold text-red-400 mb-2">Daño a la Reputación y Acoso</h3>
-                        <p>Se pueden crear videos comprometedores falsos de cualquier persona, usándolos para extorsión, acoso o para destruir la reputación personal y profesional de alguien. Es una forma devastadora de abuso.</p>
-                    </div>
-                    <!-- Tarjeta de Peligro 4 -->
-                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg transition-transform hover:scale-105">
-                        <h3 class="text-xl font-bold text-red-400 mb-2">Manipulación Política</h3>
-                        <p>Durante una elección, un video deepfake de un candidato en un escándalo o diciendo algo inapropiado puede influir decisivamente en la opinión pública antes de que pueda ser desmentido.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Sección: ¿Cómo Detectarlos? (Interactiva) -->
-            <section class="mb-12">
-                <h2 class="text-3xl font-semibold text-cyan-300 mb-6 text-center">¿Cómo Detectar un Deepfake?</h2>
-                <p class="text-lg text-center mb-8">Aunque la tecnología mejora, muchos deepfakes aún tienen fallas. Pasa el ratón (o pulsa) sobre los puntos en la imagen "falsa" para ver las señales de alerta comunes.</p>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    <!-- Imagen Real (Placeholder) -->
-                    <div class="text-center">
-                        <h4 class="text-2xl font-semibold text-green-400 mb-4">Video Real</h4>
-                        <img src="https://placehold.co/600x400/374151/FFF?text=Video+Real" alt="Video Real" class="rounded-lg shadow-lg w-full">
-                        <p class="mt-4 text-gray-400">Iluminación consistente, parpadeo natural, movimientos fluidos.</p>
-                    </div>
-
-                    <!-- Imagen Falsa (Interactiva) -->
-                    <div class="text-center">
-                        <h4 class="text-2xl font-semibold text-red-400 mb-4">Video Falso (Deepfake)</h4>
-                        <div class="relative w-full">
-                            <img src="https://placehold.co/600x400/374151/FFF?text=Video+Falso" alt="Video Falso" class="rounded-lg shadow-lg w-full">
-                            
-                            <!-- Hotspot 1: Ojos -->
-                            <div class="hotspot" style="top: 30%; left: 35%;">
-                                <div class="tooltip" style="top: -40px; left: -50px;">Parpadeo extraño</div>
-                            </div>
-                            <div class="hotspot" style="top: 30%; left: 55%;">
-                                <div class="tooltip" style="top: -40px; left: -50px;">Parpadeo extraño</div>
-                            </div>
-
-                            <!-- Hotspot 2: Bordes del rostro -->
-                            <div class="hotspot" style="top: 50%; left: 20%;">
-                                <div class="tooltip" style="top: -20px; left: -120px;">Bordes borrosos</div>
-                            </div>
-
-                            <!-- Hotspot 3: Boca -->
-                            <div class="hotspot" style="top: 65%; left: 45%;">
-                                <div class="tooltip" style="top: 30px; left: -60px;">Sincronización labial</div>
-                            </div>
-
-                            <!-- Hotspot 4: Iluminación -->
-                            <div class="hotspot" style="top: 20%; left: 70%;">
-                                <div class="tooltip" style="top: -40px; left: -60px;">Luz inconsistente</div>
+                    <div class="space-y-6">
+                        <!-- Internacional -->
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="shield-check" class="h-5 w-5 text-blue-600 flex-shrink-0 mt-1"></i>
+                            <div>
+                                <strong class="font-semibold">INTERPOL (Internacional)</strong>
+                                <p class="text-sm text-slate-500">Puedes reportar el fraude a tu policía nacional, la cual puede coordinar con INTERPOL si el crimen es transnacional.</p>
+                                <a href="https://www.interpol.int/es/Como-trabajamos/Ciberdelincuencia" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:underline text-sm">Ver Centro de Ciberdelincuencia de INTERPOL</a>
                             </div>
                         </div>
-                        <p class="mt-4 text-gray-400">Busca estas señales de alerta.</p>
-                    </div>
-                </div>
-
-                <!-- Lista de Señales -->
-                <div class="mt-10 bg-gray-800 p-6 rounded-lg shadow-xl">
-                    <h3 class="text-xl font-semibold text-cyan-300 mb-4">Otras señales a buscar:</h3>
-                    <ul class="list-disc list-inside space-y-2 text-lg">
-                        <li><strong>Parpadeo inusual:</strong> La IA a veces "olvida" hacer que la persona parpadee, o lo hace de forma extraña.</li>
-                        <li><strong>Piel demasiado lisa o arrugas extrañas:</strong> La piel puede parecer artificial, como de cera.</li>
-                        <li><strong>Inconsistencias en iluminación y sombras:</strong> Las sombras en el rostro falso pueden no coincidir con la iluminación del resto del video.</li>
-                        <li><strong>Voz robótica o sin emoción:</strong> Los deepfakes de audio a menudo carecen de la entonación y las pausas naturales del habla humana.</li>
-                        <li><strong>Artefactos digitales:</strong> Busca "glitches", bordes borrosos o distorsión donde la cara se une al cuello o cabello.</li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- 
-                *** NUEVA SECCIÓN: DETECTOR DE IA SIMULADO ***
-            -->
-            <section id="detector" class="mb-12">
-                <h2 class="text-3xl font-semibold text-cyan-300 mb-6 text-center">Prueba Nuestro Detector de IA Simulado</h2>
-                <p class="text-lg text-center mb-8">Sube un archivo (video o imagen) para ver cómo una herramienta de IA analizaría el contenido en busca de anomalías. <br><strong class="text-cyan-400">(Esto es una simulación con fines educativos, no se sube ningún archivo).</strong></p>
-
-                <div class="max-w-3xl mx-auto">
-                    <!-- Zona de Carga -->
-                    <div class="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-xl mb-6">
-                        <h3 class="text-2xl font-semibold text-white mb-4">Cargar Archivo para Análisis</h3>
-                        
-                        <!-- Input de archivo personalizado -->
-                        <div class="border-2 border-dashed border-gray-600 rounded-lg p-8 text-center hover:border-cyan-400 transition-colors">
-                            <input type="file" id="file-upload" class="hidden" accept="video/*,image/*">
-                            <label for="file-upload" id="file-label" class="cursor-pointer">
-                                <i data-lucide="upload" class="mx-auto mb-4 h-12 w-12 text-gray-400"></i>
-                                <p class="text-sm font-medium mb-1" id="file-name">Haz clic para seleccionar un archivo</p>
-                                <p class="text-xs text-gray-500">MP4, MOV, JPG, PNG (Simulado)</p>
-                            </label>
-                        </div>
-
-                        <button id="analyze-btn" disabled class="mt-6 w-full bg-cyan-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-cyan-500 transition-all disabled:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
-                            <i data-lucide="activity" class="h-5 w-5"></i>
-                            <span id="analyze-btn-text">Analizar Archivo</span>
-                        </button>
-                    </div>
-
-                    <!-- Progreso del Análisis (Oculto por defecto) -->
-                    <div id="analysis-progress" class="hidden mb-6 bg-gray-800 p-6 rounded-lg shadow-xl">
-                        <p class="text-center text-lg font-medium mb-4">Analizando...</p>
-                        <div class="w-full bg-gray-700 rounded-full h-2.5 overflow-hidden">
-                            <div class="bg-cyan-400 h-2.5 rounded-full progress-indeterminate" style="width: 100%;"></div>
-                        </div>
-                        <p class="text-center text-sm text-gray-400 mt-4">Examinando patrones de voz, faciales y de entorno...</p>
-                    </div>
-
-                    <!-- Contenedor de Resultados (Oculto por defecto) -->
-                    <div id="results-container" class="hidden space-y-6">
-                        <!-- Puntuación General -->
-                        <div class="bg-gray-800 p-6 rounded-lg shadow-xl border-2" id="overall-score-card">
-                            <h3 class="text-sm font-medium text-gray-400 mb-2 text-center">Probabilidad de Contenido Generado por IA</h3>
-                            <div class="flex flex-col items-center justify-center gap-4">
-                                <span class="text-6xl font-bold" id="overall-score">82%</span>
-                                <span class="text-lg font-medium px-4 py-1.5 rounded-full" id="overall-badge">
-                                    <i class="inline-block h-4 w-4" data-lucide="alert-triangle"></i>
-                                    Alto Riesgo
-                                </span>
+                        <!-- Europa -->
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="landmark" class="h-5 w-5 text-blue-600 flex-shrink-0 mt-1"></i>
+                            <div>
+                                <strong class="font-semibold">Europol (Unión Europea)</strong>
+                                <p class="text-sm text-slate-500">Reporta a la autoridad de ciberdelincuencia de tu país. Europol coordina las investigaciones a nivel de la UE.</p>
+                                <a href="https://www.europol.europa.eu/report-a-crime" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:underline text-sm">Reportar un crimen (Europol)</a>
                             </div>
                         </div>
-
-                        <!-- Resultados Detallados -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="detailed-results">
-                            <!-- Los resultados detallados se insertarán aquí -->
+                        <!-- USA -->
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="flag" class="h-5 w-5 text-blue-600 flex-shrink-0 mt-1"></i>
+                            <div>
+                                <strong class="font-semibold">FBI - Internet Crime Complaint Center (IC3) (EE. UU.)</strong>
+                                <p class="text-sm text-slate-500">El IC3 del FBI es la entidad central para reportar ciberdelitos en Estados Unidos.</p>
+                                <a href="https://www.ic3.gov/" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:underline text-sm">Visitar IC3.gov</a>
+                            </div>
                         </div>
-
-                        <!-- Línea de Tiempo -->
-                        <div class="bg-gray-800 p-6 rounded-lg shadow-xl">
-                            <h3 class="text-xl font-semibold text-white mb-6">Línea de Tiempo de Anomalías</h3>
-                            <div class="relative space-y-6 border-l-2 border-gray-700 ml-4" id="timeline-results">
-                                <!-- Las anomalías de la línea de tiempo se insertarán aquí -->
+                        <!-- Colombia (Ejemplo) -->
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="gavel" class="h-5 w-5 text-blue-600 flex-shrink-0 mt-1"></i>
+                            <div>
+                                <strong class="font-semibold">Policía Nacional - CAI Virtual (Colombia)</strong>
+                                <p class="text-sm text-slate-500">Plataforma principal en Colombia para reportar delitos informáticos y estafas.</p>
+                                <a href="https://caivirtual.policia.gov.co/" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:underline text-sm">Visitar CAI Virtual</a>
                             </div>
                         </div>
                     </div>
-
                 </div>
-            </section>
-            <!-- *** FIN DE LA NUEVA SECCIÓN *** -->
 
+            </div>
 
-            <!-- Sección: Protégete -->
-            <section class="mb-12 text-center">
-                <h2 class="text-3xl font-semibold text-cyan-300 mb-6">¿Qué puedes hacer? Sé Escéptico.</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
-                        <h3 class="text-xl font-bold text-cyan-400 mb-2">1. Verifica la Fuente</h3>
-                        <p>¿Quién comparte el video? ¿Es una fuente de noticias fiable? Busca la historia en otros medios de comunicación reputados.</p>
-                    </div>
-                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
-                        <h3 class="text-xl font-bold text-cyan-400 mb-2">2. Piensa Antes de Compartir</h3>
-                        <p>La desinformación se propaga porque reaccionamos emocionalmente. Tómate un segundo. Si algo parece demasiado impactante o perfecto, podría ser falso.</p>
-                    </div>
-                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
-                        <h3 class="text-xl font-bold text-cyan-400 mb-2">3. Fomenta el Pensamiento Crítico</h3>
-                        <p>Educa a tus amigos y familiares sobre los deepfakes. Cuanta más gente conozca esta tecnología, más difícil será que nos engañen como sociedad.</p>
-                    </div>
-                </div>
-            </section>
+            <!-- Módulo 4: Detector de Deepfake -->
+            <!-- SECCIÓN DEL DETECTOR ELIMINADA -->
+
         </main>
 
         <!-- Pie de Página -->
-        <footer class="text-center border-t border-gray-700 pt-8 mt-12">
-            <p class="text-gray-500">Esta página es un proyecto de concientización sobre los peligros de la manipulación digital.</p>
-            <p class="text-gray-500">Mantente alerta. Cuestiona lo que ves.</p>
+        <footer class="text-center border-t border-slate-200 pt-8 mt-12">
+            <p class="text-slate-500">Plataforma de Conciencia Deepfake. Un proyecto educativo.</p>
+            <p class="text-slate-500">Mantente alerta. Cuestiona lo que ves.</p>
         </footer>
 
     </div>
 
-    <!-- Script para iconos y funcionalidad del detector -->
+    <!-- Script para iconos y funcionalidad -->
     <script>
         // Cargar iconos de Lucide
-        lucide.createIcons();
+        // lucide.createIcons(); // <-- Se movió esta línea
 
-        // Lógica del detector simulado
         document.addEventListener('DOMContentLoaded', () => {
-            const fileUpload = document.getElementById('file-upload');
-            const fileNameDisplay = document.getElementById('file-name');
-            const analyzeBtn = document.getElementById('analyze-btn');
-            const analyzeBtnText = document.getElementById('analyze-btn-text');
-            const analysisProgress = document.getElementById('analysis-progress');
-            const resultsContainer = document.getElementById('results-container');
-            const overallScore = document.getElementById('overall-score');
-            const overallBadge = document.getElementById('overall-badge');
-            const overallScoreCard = document.getElementById('overall-score-card');
-            const detailedResults = document.getElementById('detailed-results');
-            const timelineResults = document.getElementById('timeline-results');
-
-            let selectedFile = null;
-
-            if (fileUpload) {
-                fileUpload.addEventListener('change', (e) => {
-                    if (e.target.files.length > 0) {
-                        selectedFile = e.target.files[0];
-                        fileNameDisplay.textContent = selectedFile.name;
-                        if (analyzeBtn) analyzeBtn.disabled = false;
-                        
-                        // Ocultar resultados anteriores si se selecciona un nuevo archivo
-                        if (resultsContainer) resultsContainer.classList.add('hidden');
-                    }
-                });
+            
+            // Cargar iconos de Lucide - MOVIDO AQUÍ
+            try {
+                lucide.createIcons();
+            } catch (e) {
+                console.error("Error al cargar los iconos de Lucide:", e);
             }
-
-            if (analyzeBtn) {
-                analyzeBtn.addEventListener('click', () => {
-                    if (!selectedFile) return;
-
-                    // 1. Mostrar progreso y deshabilitar botón
-                    if (analysisProgress) analysisProgress.classList.remove('hidden');
-                    if (resultsContainer) resultsContainer.classList.add('hidden');
-                    analyzeBtn.disabled = true;
-                    if (analyzeBtnText) analyzeBtnText.textContent = 'Analizando...';
+            
+            // --- LÓGICA DE PESTAÑAS ---
+            const tabs = document.querySelectorAll('.tab-btn');
+            const contents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.getAttribute('data-tab');
                     
-                    // 2. Simular análisis
-                    setTimeout(() => {
-                        // 3. Ocultar progreso
-                        if (analysisProgress) analysisProgress.classList.add('hidden');
-                        
-                        // 4. Generar resultados simulados
-                        const mockResults = generateMockResults();
-
-                        // 5. Mostrar resultados
-                        if (overallScore) overallScore.textContent = `${mockResults.overallProbability}%`;
-                        
-                        // Actualizar insignia de puntuación
-                        if (overallBadge && overallScoreCard) {
-                            if (mockResults.overallProbability > 70) {
-                                overallBadge.innerHTML = `<i data-lucide="alert-triangle" class="inline-block h-4 w-4 mr-1"></i> Alto Riesgo`;
-                                overallBadge.className = 'text-lg font-medium px-4 py-1.5 rounded-full bg-red-600 text-white';
-                                overallScoreCard.className = 'bg-gray-800 p-6 rounded-lg shadow-xl border-2 border-red-500';
-                            } else if (mockResults.overallProbability > 40) {
-                                overallBadge.innerHTML = `<i data-lucide="alert-circle" class="inline-block h-4 w-4 mr-1"></i> Riesgo Moderado`;
-                                overallBadge.className = 'text-lg font-medium px-4 py-1.5 rounded-full bg-yellow-500 text-gray-900';
-                                overallScoreCard.className = 'bg-gray-800 p-6 rounded-lg shadow-xl border-2 border-yellow-500';
-                            } else {
-                                overallBadge.innerHTML = `<i data-lucide="check-circle" class="inline-block h-4 w-4 mr-1"></i> Probablemente Genuino`;
-                                overallBadge.className = 'text-lg font-medium px-4 py-1.5 rounded-full bg-green-600 text-white';
-                                overallScoreCard.className = 'bg-gray-800 p-6 rounded-lg shadow-xl border-2 border-green-500';
-                            }
+                    // Actualizar botones
+                    tabs.forEach(t => {
+                        t.classList.remove('active', 'bg-blue-600', 'text-white', 'shadow-lg');
+                        t.classList.add('inactive', 'bg-slate-200', 'text-slate-700');
+                    });
+                    tab.classList.add('active', 'bg-blue-600', 'text-white', 'shadow-lg');
+                    tab.classList.remove('inactive', 'bg-slate-200', 'text-slate-700');
+                    
+                    // Mostrar contenido
+                    contents.forEach(content => {
+                        if (content.id === target) {
+                            content.classList.remove('hidden');
+                        } else {
+                            content.classList.add('hidden');
                         }
-
-                        // Poblar resultados detallados
-                        if (detailedResults) {
-                            detailedResults.innerHTML = mockResults.categories.map(cat => createCategoryCard(cat)).join('');
-                        }
-
-                        // Poblar línea de tiempo
-                        if (timelineResults) {
-                            timelineResults.innerHTML = mockResults.timeline.map(item => createTimelineItem(item)).join('');
-                        }
-
-                        if (resultsContainer) resultsContainer.classList.remove('hidden');
-                        
-                        // 6. Reactivar botón para nuevo análisis
-                        analyzeBtn.disabled = false;
-                        if (analyzeBtnText) analyzeBtnText.textContent = 'Analizar Otro Archivo';
-
-                        // Recargar iconos
-                        lucide.createIcons();
-
-                    }, 3000); // Simular 3 segundos de análisis
+                    });
                 });
-            }
+            });
+
+            // --- LÓGICA DE GEOLOCALIZACIÓN ---
+            // SE HA ELIMINADO LA LÓGICA DE GEOLOCALIZACIÓN
+            // Y SE HA REEMPLAZADO POR LA LISTA ESTÁTICA GLOBAL
+
+            // --- LÓGICA DEL DETECTOR SIMULADO ---
+            // SE ELIMINÓ TODA LA LÓGICA DEL DETECTOR SIMULADO
         });
-
-        function generateMockResults() {
-            const prob = Math.floor(Math.random() * 60) + 40; // 40-100%
-            return {
-                overallProbability: prob,
-                categories: [
-                    {
-                        title: "Análisis de Voz",
-                        icon: "mic",
-                        score: Math.floor(Math.random() * 40) + 60,
-                        description: "Artefactos de síntesis y tonalidad no natural."
-                    },
-                    {
-                        title: "Rasgos Faciales",
-                        icon: "user",
-                        score: Math.floor(Math.random() * 40) + 50,
-                        description: "Parpadeo irregular y desincronización labial."
-                    },
-                ],
-                timeline: [
-                    { time: "0:02.1s", severity: "high", description: "Cambio abrupto de tono de voz detectado." },
-                    { time: "0:04.5s", severity: "medium", description: "Parpadeo inconsistente y movimiento de ojos." },
-                    { time: "0:07.8s", severity: "low", description: "Ligero desenfoque en el borde del rostro." },
-                ]
-            };
-        }
-
-        function createCategoryCard(category) {
-            return `
-                <div class="bg-gray-800 p-5 rounded-lg shadow-lg">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="p-2 rounded-lg bg-cyan-500/20">
-                            <i data-lucide="${category.icon}" class="h-5 w-5 text-cyan-400"></i>
-                        </div>
-                        <h4 class="text-lg font-semibold text-white">${category.title}</h4>
-                    </div>
-                    <p class="text-sm text-gray-400 mb-2">${category.description}</p>
-                    <div class="w-full bg-gray-700 rounded-full h-2.5">
-                        <div class="bg-red-500 h-2.5 rounded-full" style="width: ${category.score}%"></div>
-                    </div>
-                    <p class="text-right text-sm font-bold text-red-400 mt-1">${category.score}%</p>
-                </div>
-            `;
-        }
-        
-        function createTimelineItem(item) {
-            let colorClass = "text-yellow-400 border-yellow-400";
-            if (item.severity === 'high') colorClass = "text-red-400 border-red-400";
-            if (item.severity === 'low') colorClass = "text-blue-400 border-blue-400";
-
-            let icon = "alert-circle";
-            if (item.severity === 'high') icon = "alert-triangle";
-            if (item.severity === 'low') icon = "info";
-
-            return `
-                <div class="relative flex gap-4 pb-6">
-                    <!-- Icono y línea -->
-                    <div class="absolute left-[-25px] top-1.5 flex flex-col items-center">
-                        <div class="z-10 flex h-8 w-8 items-center justify-center rounded-full bg-gray-900 border-2 ${colorClass}">
-                            <i data-lucide="${icon}" class="h-4 w-4"></i>
-                        </div>
-                    </div>
-                    <!-- Contenido -->
-                    <div class="flex-1">
-                        <span class="font-mono text-sm px-2 py-0.5 bg-gray-700 rounded text-cyan-300">${item.time}</span>
-                        <p class="mt-2 text-sm text-gray-300">${item.description}</p>
-                    </div>
-                </div>
-            `;
-        }
-
     </script>
 </body>
 </html>
-
